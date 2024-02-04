@@ -6,6 +6,7 @@ from app.groups import api as groups
 
 def create_app():
     app = FastAPI()
+    app.mount("/static",StaticFiles(directory="static"))
     app.mount("/images",StaticFiles(directory="static/images"))
     app.include_router(groups.router)
 
