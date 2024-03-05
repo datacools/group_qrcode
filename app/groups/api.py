@@ -1,7 +1,6 @@
 
 
 from pathlib import Path
-import shutil
 from app.core.config import get_templates
 from fastapi import APIRouter, HTTPException, Query, Request, UploadFile
 
@@ -41,4 +40,15 @@ async def get_qrcode(request:Request):
             "request":request,
             "group_qrcode_url": '/images/group_qrcode.jpg'
         },
+    )
+
+@router.get("/chuancai")
+async def get_chuan_cai_qrcode(request:Request):
+    """获取注册川财证券的二维码"""
+    return templates.TemplateResponse(
+        "chuancai.html",
+        {
+            "request":request,
+            "qrcode_url": '/images/chuancai.jpg'
+        }
     )
