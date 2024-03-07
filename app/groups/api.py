@@ -1,6 +1,7 @@
 
 
 from pathlib import Path
+import shutil
 from app.core.config import get_templates
 from fastapi import APIRouter, HTTPException, Query, Request, UploadFile
 
@@ -50,5 +51,16 @@ async def get_chuan_cai_qrcode(request:Request):
         {
             "request":request,
             "qrcode_url": '/images/chuancai.jpg'
+        }
+    )
+
+@router.get("/zhangle")
+async def get_zhangle_qrcode(request:Request):
+    """获取二维码"""
+    return templates.TemplateResponse(
+        "zhangle.html",
+        {
+            "request":request,
+            "qrcode_url": '/images/zhang_qrcode.png'
         }
     )
